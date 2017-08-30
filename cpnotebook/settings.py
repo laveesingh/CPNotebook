@@ -1,11 +1,11 @@
 import os
 from .dev_settings import (
     DATABASE_USERNAME,
-    DATABASE_PASSWORD
+    DATABASE_PASSWORD,
+    SECRET_KEY,
 )
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SECRET_KEY = 'd*64$b15g&4nph@c6y!!ls1k+4)er@vfgg!*_ag!$_#k5)0&=*'
 
 DEBUG = True
 
