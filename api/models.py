@@ -12,4 +12,6 @@ class Post(models.Model):
     content = models.TextField(null=True)
 
     def __unicode__(self):
+        if not self.title:
+            return "NULL"
         return self.title

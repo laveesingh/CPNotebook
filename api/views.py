@@ -31,3 +31,17 @@ def post_list(request):
         "posts": serialized_posts,
     }
     return Response(response)
+
+@api_view(http_method_names=['POST'])
+def post_create(request):
+    serializer = PostSerializer(data=request.POST)
+    if serializer.is_valid():
+        MSG = "successfully created the post"
+        data = serializer.save()
+    else:
+        MSG = "There's something wrong with submitted data"
+    response = {
+        'message': MSG,
+    }
+    return Response(response)
+
