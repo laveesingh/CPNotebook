@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
+import datetime
 
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -24,20 +25,18 @@ def post_detail(request, pk):
 @api_view()
 def post_list(request):
     posts = Post.objects.all()
-    serialized_posts = []
-    for post in posts:
-        serialized_posts.append(PostSerializer(post).data)
-    response = {
-        "posts": serialized_posts,
-    }
-    return Response(response)
+    serializer = PostSerializer(posts, many=True)
+    return Response(serializer.data)
 
 @api_view(http_method_names=['POST'])
 def post_create(request):
     serializer = PostSerializer(data=request.POST)
     if serializer.is_valid():
         MSG = "successfully created the post"
-        data = serializer.save()
+        post = serializer.save()
+        post.creation = datetime.date.today
+        post.last_edit = datetime.date.today
+        post.save()
     else:
         MSG = "There's something wrong with submitted data"
     response = {
