@@ -5,7 +5,7 @@ decorator==4.1.2
 Django==1.11.4
 djangorestframework==3.6.4
 enum34==1.1.6
-httpie==0.9.9
+httpie==1.0.3
 idna==2.6
 ipython==5.4.1
 ipython-genutils==0.2.0
